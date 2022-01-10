@@ -30,7 +30,7 @@ def generate_random_location(lat_center, lon_center, min_radius, max_radius):
     t = 2 * np.pi * v
     x = w * np.cos(t) 
     y = w * np.sin(t)
-    x /= np.cos(lon_center)
+    x /= np.cos(lat_center)
     random_location = (lat_center + x, lon_center + y)
     return random_location
 
