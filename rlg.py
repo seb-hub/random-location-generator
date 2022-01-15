@@ -23,15 +23,14 @@ def generate_random_location(lat_center, lon_center, min_radius, max_radius):
 
     https://gis.stackexchange.com/questions/25877/generating-random-locations-nearby
     '''
-    # 111.3 km in a degree (equatorial)
-    radius = np.random.randint(min_radius, max_radius) / 111.3
-    (u, v) = (np.random.rand(), np.random.rand())
-    w = radius * np.sqrt(u)
-    t = 2 * np.pi * v
-    x = w * np.cos(t) 
-    y = w * np.sin(t)
-    x /= np.cos(lat_center)
-    random_location = (lat_center + y, lon_center + x)
+    radius = np.random.uniform(min_radius, max_radius)
+    print(f'Straight-line distance: {radius:.2f} km')
+    radius /= 111.3 # 111.3 km in a degree (equatorial)
+    angle = 2 * np.pi * np.random.rand()
+    lat_delta = radius * np.sin(angle)
+    lon_delta = radius * np.cos(angle) 
+    lon_delta /= np.cos(np.deg2rad(lat_center)) # account for decreasing longitudinal distances
+    random_location = (lat_center + lat_delta, lon_center + lon_delta)
     return random_location
 
 
