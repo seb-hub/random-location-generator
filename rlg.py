@@ -31,7 +31,7 @@ def generate_random_location(lat_center, lon_center, min_radius, max_radius):
     x = w * np.cos(t) 
     y = w * np.sin(t)
     x /= np.cos(lat_center)
-    random_location = (lat_center + x, lon_center + y)
+    random_location = (lat_center + y, lon_center + x)
     return random_location
 
 
